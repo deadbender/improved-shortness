@@ -1,0 +1,31 @@
+{
+  "name": "improved-shortness",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deadbender/improved-shortness.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/deadbender/improved-shortness/issues"
+  },
+  "homepage": "https://github.com/deadbender/improved-shortness#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.1.1",
+    "monk": "^7.3.2",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.1.12",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
