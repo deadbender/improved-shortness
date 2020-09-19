@@ -109,7 +109,9 @@ client.on('message', message => {
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     const args = message.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
-    
+    if(message.author.roles.cache.has(process.env.ROLE_LOCK)) {
+        return message.channel.send('You must be a higher rank to use this command.')
+    }
     if(command == 'shorten') {
         if(!args.length) {
             return message.channel.send('Please provide a URL to shorten. ex. `!shorten knightsofacademia.org (slug)`')
@@ -146,7 +148,8 @@ client.on('message', message => {
         });  
         var postData = JSON.stringify({"url":url,"slug":slug});
         req.write(postData);
-        req.end(); 
+        req.end();
+        message.delete(1500); 
     }
 })
 client.login(process.env.DISCORD_TOKEN);
