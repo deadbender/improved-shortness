@@ -14,7 +14,7 @@ var fs = require('fs');
 
 require('dotenv').config();
 
-const db = monk(process.env.MONGODB_URI);
+const db = monk(`mongodb+srv://${process.env.MONGODB_URI}`);
 const urls = db.get('urls');
 urls.createIndex({ slug: 1 }, { unique: true });
 
@@ -61,7 +61,7 @@ app.post('/url', slowDown({
             slug,
             url,
         });
-        if (url.includes('cdg.sh')) {
+        if (url.includes('koa.gg')) {
             throw new Error('Stop it. 🛑');
         }
         if (!slug) {
@@ -112,6 +112,9 @@ client.on('message', message => {
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     const args = message.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
+    if(command == 'help') {
+        return message.channel.send('>shorten a URL! ex. `>shorten knightsofacademia.org (slug)`')
+    }
     if(command == 'shorten') {
         if(!args.length) {
             return message.channel.send('Please provide a URL to shorten. ex. `>shorten knightsofacademia.org (slug)`')
@@ -139,7 +142,7 @@ client.on('message', message => {
                 var body = Buffer.concat(chunks);
                 var bodyOutput = body.toString()
                 let slug = JSON.parse(bodyOutput).slug
-                message.channel.send(`http://${host}/${slug}`);
+                message.channel.send(`http://${process.env.HOST}/${slug}`);
             });
             
             res.on("error", function (error) {

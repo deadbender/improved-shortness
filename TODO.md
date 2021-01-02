@@ -1,2 +1,1 @@
-- [ ] Better UI with the bot response (ex. bot should delete messages)
 - [ ] HTTPs
