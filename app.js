@@ -24,7 +24,10 @@ app.enable('trust proxy');
 app.use(helmet());
 app.use(morgan('common'));
 app.use(express.json());
-app.use(express.static('./public'));
+
+app.get('/', async(res) => {
+    res.redirect(process.env.REDIRECT_URL)
+})
 
 app.get('/:id', async (req, res, next) => {
     const { id: slug } = req.params;
@@ -105,13 +108,13 @@ client.once('ready', () => {
     console.log("Discord Bot Online");
 });
 client.on('message', message => {
-    const prefix = '!'
+    const prefix = '>'
     if(!message.content.startsWith(prefix) || message.author.bot) return;
     const args = message.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
     if(command == 'shorten') {
         if(!args.length) {
-            return message.channel.send('Please provide a URL to shorten. ex. `!shorten knightsofacademia.org (slug)`')
+            return message.channel.send('Please provide a URL to shorten. ex. `>shorten knightsofacademia.org (slug)`')
         }
         let url = args[0];
         let slug = args[1];
