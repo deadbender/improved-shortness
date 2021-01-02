@@ -1,4 +1,2 @@
 - [ ] Better UI with the bot response (ex. bot should delete messages)
 - [ ] HTTPs
-- [ ] / should redirect to `knightsofacademia.org`
-- [ ] Host -> .env

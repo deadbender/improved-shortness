@@ -139,7 +139,7 @@ client.on('message', message => {
                 var body = Buffer.concat(chunks);
                 var bodyOutput = body.toString()
                 let slug = JSON.parse(bodyOutput).slug
-                message.channel.send(`http://koa.gg/${slug}`);
+                message.channel.send(`http://${host}/${slug}`);
             });
             
             res.on("error", function (error) {
